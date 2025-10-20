@@ -50,7 +50,6 @@
 <script src="{!! backendAssets('dist/assets/bundles/apexcharts.bundle.js') !!}"></script>
 <script src="{!! backendAssets('dist/assets/bundles/dataTables.bundle.js') !!}"></script>
 <script src="{!! backendAssets('dist/assets/js/page/index.js') !!}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1Jr7axGGkwvHRnNfoOzoVRFV3yOPHJEU&callback=myMap"></script>
 @endpush
 
 @push('custom_scripts')
