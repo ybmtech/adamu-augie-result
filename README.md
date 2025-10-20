@@ -1,64 +1,123 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# AACOE Student Result Management System
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Overview
 
-## About Laravel
+This is a Laravel-based web application designed for managing student results at Adamu Augie College of Education, Argungu (AACOE). The system allows examiners to add, edit, and release student results, while students can register for courses and check their results. It includes features for bulk result uploads via CSV, notifications via email and SMS, and role-based access control.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **User Authentication**: Secure login and registration with role-based access (Examiner and Student).
+- **Role-Based Permissions**: Examiners can manage students, results, courses, and departments. Students can register for courses and view results.
+- **Result Management**:
+  - Add results individually or upload via CSV.
+  - Edit, delete, and change status of results (pending/release).
+  - Bulk status updates for entire semesters or specific courses.
+- **Course and Department Management**: Create, edit, and delete courses and departments.
+- **Student Course Registration**: Students can register for courses.
+- **Notifications**: Automatic email and SMS notifications when results are released.
+- **Grading System**: Automatic grade assignment based on scores (A, B, C, D, F).
+- **Dashboard**: Role-specific dashboards for examiners and students.
+- **Responsive UI**: Built with Tailwind CSS for a modern, responsive interface.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Technologies Used
 
-## Learning Laravel
+- **Framework**: Laravel 9
+- **PHP**: ^7.3|^8.0
+- **Database**: MySQL (configured via Laravel's database config)
+- **Frontend**: Blade templates, Tailwind CSS, JavaScript
+- **Packages**:
+  - Spatie Laravel Permission for role management
+  - RealRashid Sweet Alert for notifications
+  
+- **Queue System**: For processing result notifications in batches
+- **SMS Integration**: Custom CloudSms trait for sending SMS
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Installation
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Prerequisites
 
-## Laravel Sponsors
+- PHP 7.3 or 8.0+
+- Composer
+- Node.js and npm (for frontend assets)
+- MySQL or compatible database
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-### Premium Partners
+### Steps
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+1. **Clone the Repository**:
+   ```bash
+   git clone git@github.com:ybmtech/adamu-augie-result.git
+   cd aacoe
+   ```
 
-## Contributing
+2. **Install PHP Dependencies**:
+   ```bash
+   composer install
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+3. **Install Node Dependencies**:
+   ```bash
+   npm install
+   ```
 
-## Code of Conduct
+4. **Environment Configuration**:
+   - Copy `.env.example` to `.env`:
+     ```bash
+     cp .env.example .env
+     ```
+   - Update the `.env` file with your database credentials, app key, and other settings (e.g., mail, SMS API keys).
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+5. **Generate Application Key**:
+   ```bash
+   php artisan key:generate
+   ```
 
-## Security Vulnerabilities
+6. **Run Migrations and Seeders**:
+   ```bash
+   php artisan migrate
+   php artisan db:seed
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+7. **Build Frontend Assets**:
+   ```bash
+   npm run dev
+   # Or for production:
+   npm run build
+   ```
 
-## License
+8. **Start the Server**:
+   ```bash
+   php artisan serve
+   ```
+   The application will be available at `http://localhost:8000`.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+9. **Queue Worker (for notifications)**:
+   ```bash
+   php artisan queue:work
+   ```
+
+## Usage
+
+### For Examiners
+- Log in with examiner credentials.
+- Navigate to the dashboard to manage students, results, courses, and departments.
+- Add results individually or upload CSV files.
+- Release results to notify students via email and SMS.
+
+### For Students
+- Register and log in.
+- Register for courses.
+- Check results once released.
+
+## Database Schema
+
+Key tables include:
+- `users`: User accounts with roles.
+- `profiles`: User profiles (e.g., phone for SMS).
+- `courses`: Course details.
+- `departments`: Department information.
+- `student_courses`: Junction table for student-course enrollments with scores and status.
+- `sessions`, `semesters`, `levels`: Academic session management.
+
+
+**Note**: Ensure all environment variables are properly set, especially for SMS and email services, to enable full functionality.
